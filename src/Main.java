@@ -6,6 +6,7 @@ public class Main {
     public static void main(String[] args) {
         AdjacencyGraph shipG = createDirectedAdj();
         shipG.calculateSurplus();
+        System.out.println("Surpluses for each port.");
         HashMap<String, Integer> surplus = shipG.getSurplus();
         // Print surpluses.
         for(String port : surplus.keySet()) {
