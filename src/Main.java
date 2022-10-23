@@ -13,6 +13,7 @@ public class Main {
             System.out.println(port + ": " + surplus.get(port));
         }
         System.out.println();
+        System.out.println("Minimum container flow to return containers.");
         shipG.minimumContainerFlow();
     }
 
