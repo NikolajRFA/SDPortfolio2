@@ -20,24 +20,6 @@ public class AdjacencyGraph {
         Edge newE=new Edge(from, to, weight);
 
     }
-    public void addUnDirectedEdge(Vertex from, Vertex to, Integer weight){
-        if(!(vertices.contains(from) && vertices.contains(to)))
-        {
-            System.out.println("Vertices missing from graph");
-            return;
-        }
-        Edge newE=new Edge(from, to, weight);
-        Edge newE2=new Edge( to, from, weight);
-    }
-    public void PrintGraph(){
-        for(int i = 0; i< vertices.size(); i++){
-            System.out.println("Vertex "+ vertices.get(i).name+" is connected to: ");
-            Vertex current= vertices.get(i);
-            for (Edge e: current.OutEdge) {
-                System.out.println(e.to.name +" with weight: "+e.weight);
-            }
-        }
-    }
 
     public void calculateSurplus() {
         HashMap<String, Integer> surplus = new HashMap<>();

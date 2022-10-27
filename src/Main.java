@@ -50,18 +50,4 @@ public class Main {
 
         return newG;
     }
-
-    // The following function was originally developed to be a part of finding a solution to the minimal containerflow problem.
-    // However, it didn't end up being used. I left it in to show part of the development process.
-    // The function takes a hashmap, and sorts it into a linked hashmap.
-    public static HashMap<String, Integer> sortByValue(HashMap<String, Integer> hm) {
-        ArrayList<Map.Entry<String, Integer>> list = new ArrayList<>(hm.entrySet());
-        list.sort(Map.Entry.comparingByValue());
-        // Remap to Linked HashMap
-        HashMap<String, Integer> out = new LinkedHashMap<>();
-        for (Map.Entry<String, Integer> entry : list) {
-            out.put(entry.getKey(), entry.getValue());
-        }
-        return out;
-    }
 }
