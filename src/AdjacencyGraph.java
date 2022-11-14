@@ -11,11 +11,14 @@ public class AdjacencyGraph {
     public void addVertex(Vertex v){
         vertices.add(v);
     }
-    public void addEdge(Vertex from, Vertex to, Integer weight){
+
+    private int totalCost = 0;
+
+    // Throws exception if given uninitialized vertices.
+    public void addEdge(Vertex from, Vertex to, Integer weight) throws Exception {
         if(!(vertices.contains(from) && vertices.contains(to)))
         {
-            System.out.println("Vertices missing from graph");
-            return;
+            throw new Exception("Vertex is missing in vertices arraylist.");
         }
         Edge newE=new Edge(from, to, weight);
 
@@ -52,15 +55,31 @@ public class AdjacencyGraph {
         return surplus.entrySet().stream().max(Map.Entry.comparingByValue()).orElse(null);
     }
 
-    public void  minimumContainerFlow() {
+    public void minimumContainerFlow() {
+        System.out.println();
         if (surplus.size() == 1) return;
         Map.Entry<String, Integer> maxContainers = findMaxSurplus();
         Map.Entry<String, Integer> minContainers = findMinSurplus();
+        if (minContainers.getValue() + maxContainers.getValue() > 0) {
+            System.out.println(surplus);
 
-        System.out.println("Send " + maxContainers.getValue() + " containers from " + maxContainers.getKey() + " to " + minContainers.getKey());
-        minContainers.setValue(minContainers.getValue() + maxContainers.getValue());
-        surplus.remove(maxContainers.getKey());
+            System.out.println("Send " + (-1 * minContainers.getValue()) + " containers from " + maxContainers.getKey() + " to " + minContainers.getKey());
+            totalCost += -1 * minContainers.getValue() * 100;
+            maxContainers.setValue(maxContainers.getValue() + minContainers.getValue());
+            surplus.remove(minContainers.getKey());
+        } else {
+            System.out.println(surplus);
+
+            System.out.println("Send " + maxContainers.getValue() + " containers from " + maxContainers.getKey() + " to " + minContainers.getKey());
+            totalCost += maxContainers.getValue() * 100;
+            minContainers.setValue(minContainers.getValue() + maxContainers.getValue());
+            surplus.remove(maxContainers.getKey());
+        }
         minimumContainerFlow();
+    }
+
+    public int getTotalCost() {
+        return totalCost;
     }
 }
 

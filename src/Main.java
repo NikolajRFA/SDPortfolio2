@@ -1,4 +1,3 @@
-import java.sql.SQLOutput;
 import java.util.*;
 
 public class Main {
@@ -15,6 +14,7 @@ public class Main {
         System.out.println();
         System.out.println("Minimum container flow to return containers.");
         shipG.minimumContainerFlow();
+        System.out.println("\nTotal cost is: $" + shipG.getTotalCost());
     }
 
 
@@ -35,18 +35,23 @@ public class Main {
         newG.addVertex(jebel);
         newG.addVertex(salalah);
 
-        newG.addEdge(jarwaharlal, mombasa,2000);
-        newG.addEdge(jarwaharlal, dar,2000);
-        newG.addEdge(tanjung, mombasa,5000);
-        newG.addEdge(tanjung, dar,3000);
-        newG.addEdge(tanjung, zanzibar,2000);
-        newG.addEdge(tanjung, jebel,7000);
-        newG.addEdge(tanjung, salalah,7000);
-        newG.addEdge(dar, tanjung,5000);
-        newG.addEdge(dar, jarwaharlal,3000);
-        newG.addEdge(dar, jebel,2000);
-        newG.addEdge(mombasa, salalah, 2000);
-        newG.addEdge(mombasa, jebel, 500);
+        try {
+            newG.addEdge(jarwaharlal, mombasa, 2000);
+            newG.addEdge(jarwaharlal, dar, 2000);
+            newG.addEdge(tanjung, mombasa, 5000);
+            newG.addEdge(tanjung, dar, 3000);
+            newG.addEdge(tanjung, zanzibar, 2000);
+            newG.addEdge(tanjung, jebel, 7000);
+            newG.addEdge(tanjung, salalah, 7000);
+            newG.addEdge(dar, tanjung, 5000);
+            newG.addEdge(dar, jarwaharlal, 3000);
+            newG.addEdge(dar, jebel, 2000);
+            newG.addEdge(mombasa, salalah, 2000);
+            newG.addEdge(mombasa, jebel, 500);
+        } catch (Exception e) {
+            System.out.println("Something went wrong " + e.getMessage());
+            e.printStackTrace();
+        }
 
         return newG;
     }
